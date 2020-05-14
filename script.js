@@ -61,23 +61,22 @@ function results(response) {
     "<p>"
   );
 }};
-var iconcode = a.weather[0].icon;
-var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+
 function dayOne(data){
   return (
     "<p> Day "+ data.list[0].dt_txt +"</p>" +
-    "<p> Temperature-High "+ data.list[0].main.temp_max + "&deg;F</p>"+
-    "<p> Temperature-Min "+ data.list[0].main.temp_min + "&deg;F</p>" +
-    "<p>"+ data.list[0].weather[0] + "<p>"+
-   "<p>" + $('#wicon').attr('src', iconurl) +"<p>"
+    "<p> High "+ data.list[0].main.temp_max + "&deg;F</p>"+
+    "<p> Low "+ data.list[0].main.temp_min + "&deg;F</p>" +
+   "<p>  <img src= http://openweathermap.org/img/wn/"+ data.list[0].weather[0].icon + ".png>" + "</p>"
   );
   
 };
 function dayTwo(data){
   return (
     "<p> Day "+ data.list[7].dt_txt +"</p>" +
-    "<p> Temperature-High "+ data.list[7].main.temp_max + "&deg;F</p>"+
-    "<p> Temperature-Min "+ data.list[7].main.temp_min + "&deg;F</p>" 
+    "<p> High "+ data.list[7].main.temp_max + "&deg;F</p>"+
+    "<p> Low "+ data.list[7].main.temp_min + "&deg;F</p>" +
+    "<p>  <img src= http://openweathermap.org/img/wn/"+ data.list[7].weather[0].icon + ".png>" + "</p>"
     
   );
   
@@ -85,27 +84,28 @@ function dayTwo(data){
 function dayThree(data){
   return (
     "<p> Day "+ data.list[15].dt_txt +"</p>" +
-    "<p> Temperature-High "+ data.list[15].main.temp_max + "&deg;F</p>"+
-    "<p> Temperature-Min "+ data.list[15].main.temp_min + "&deg;F</p>" +
-    "<p>"+ data.list[15].weather+ "<p>"
+    "<p> High "+ data.list[15].main.temp_max + "&deg;F</p>"+
+    "<p> Low "+ data.list[15].main.temp_min + "&deg;F</p>" +
+    "<p>  <img src= http://openweathermap.org/img/wn/"+ data.list[15].weather[0].icon + ".png>" + "</p>"
   );
   
 };
 function dayFour(data){
   return (
     "<p> Day "+ data.list[23].dt_txt +"</p>" +
-    "<p> Temperature-High "+ data.list[23].main.temp_max + "&deg;F</p>"+
-    "<p> Temperature-Min "+ data.list[23].main.temp_min + "&deg;F</p>" +
-    "<p>"+ data.list[23].weather + "<p>"
+    "<p> High "+ data.list[23].main.temp_max + "&deg;F</p>"+
+    "<p> Low "+ data.list[23].main.temp_min + "&deg;F</p>" +
+    "<p>  <img src= http://openweathermap.org/img/wn/"+ data.list[23].weather[0].icon + ".png>" + "</p>"
   );
   
 };
 function dayFive(data){
   return (
     "<p> Day "+ data.list[31].dt_txt +"</p>" +
-    "<p> Temperature-High "+ data.list[31].main.temp_max + "&deg;F</p>"+
-    "<p> Temperature-Min "+ data.list[31].main.temp_min + "&deg;F</p>" +
-    "<p>"+ data.list[31] + "<p>"
+    "<p> High "+ data.list[31].main.temp_max + "&deg;F</p>"+
+    "<p> Low "+ data.list[31].main.temp_min + "&deg;F</p>" +
+    
+    "<p>  <img src= http://openweathermap.org/img/wn/"+ data.list[31].weather[0].icon + ".png>" + "</p>"
   );
   
 };
