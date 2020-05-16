@@ -8,9 +8,26 @@ $(document).ready(function () {
 
 function getWeather() {
   var val = $("#city").val();
-  var cityString = "City";
-  localStorage.setItem(cityString, JSON.stringify(val))
-  var history= localStorage.getItem(val)
+  var cityString = "City"
+  cityString.length= 0;
+  localStorage.setItem(cityString,  val);
+  
+  function history(){
+  var history = localStorage.getItem(cityString, JSON.stringify(val));
+    
+    return(
+    "<p> Recent Searches: " + history +
+        "</p>" )
+    };
+    
+     var historyInput = history()
+     $("#history").html(historyInput)
+     
+      
+  
+  
+  
+  
 
   $.ajax({
     url:
@@ -171,6 +188,3 @@ function dayFive(data) {
     "</p>"
   );
 }
-
-
- 
