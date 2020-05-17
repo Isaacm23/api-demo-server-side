@@ -8,15 +8,14 @@ $(document).ready(function () {
 
 function getWeather() {
   var val = $("#city").val();
-  var cityString = "City"
-  cityString.length= 0;
-  localStorage.setItem(cityString,  val);
+  
+  localStorage.setItem("city",val);
   
   function history(){
-  var history = localStorage.getItem(cityString, JSON.stringify(val));
+  var history = localStorage.getItem(val);
     
     return(
-    "<p> Recent Searches: " + history +
+    "<p> Recent Searches: " + history  +
         "</p>" )
     };
     
@@ -36,12 +35,32 @@ function getWeather() {
       "&appid=dff0a319051040d9ba1c7ea38abb997d&units=imperial",
     method: "GET",
   }).then(function (response) {
-    console.log(response);
-
+    console.log(response)
+   
     var cityName = results(response);
+    
+    console.log(response.coord.lat)
 
     $("#name").html(cityName);
-  });
+    
+  $.ajax({
+    url:
+      "http://api.openweathermap.org/data/2.5/uvi?" +
+      "&appid=dff0a319051040d9ba1c7ea38abb997d" +
+      "&lat="+response.coord.lat+"&lon=" +response.coord.lon,
+    method: "GET",
+  }).then(function (uv) {
+    console.log(uv);
+    var cityIndex = cityIndex(uv)
+$(".index").html(cityIndex)
+
+function cityIndex(uv){
+  return(
+  "<p> Index: " +
+      uv.value +
+      "</p>"
+  )
+}
 
   $.ajax({
     url:
@@ -50,7 +69,8 @@ function getWeather() {
       "&appid=dff0a319051040d9ba1c7ea38abb997d&units=imperial",
     method: "GET",
   }).then(function (data) {
-    console.log(data);
+    console.log(data)
+   
     var one = dayOne(data);
     var two = dayTwo(data);
     var three = dayThree(data);
@@ -62,8 +82,10 @@ function getWeather() {
     $(".dayFour").html(four);
     $(".dayFive").html(five);
   });
-
+  });
+});
   function results(response) {
+    
     return (
       "<p>" +
       response.name +
@@ -83,10 +105,13 @@ function getWeather() {
       "</p>" +
       "<p>" +
       response.weather[0].description +
+      "</p>"+
+      "<p>" +
+      response.main[0].humidity +
       "</p>"
-    );
-  }
-}
+      
+    
+    )};
 
 function dayOne(data) {
   return (
@@ -187,4 +212,5 @@ function dayFive(data) {
     data.list[0].weather[0].description +
     "</p>"
   );
-}
+}};
+
