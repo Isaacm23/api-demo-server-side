@@ -8,13 +8,21 @@ $(document).ready(function () {
 
 function getWeather() {
   var val = $("#city").val();
-  
- 
+  var cityString = ["city1","city2","city3","city4"]
+  cityString.length= [0];
+  localStorage.setItem(cityString,  val);
+  function history(){
+    var history = localStorage.getItem(cityString, JSON.stringify(val));
+      
+      return(
+      "<p> Recent Searches: " + history +
+          "</p>" )
+      };
+      
+       var historyInput = history()
+       $(".history").html(historyInput)
      
       
-  
-  
-  
   
 
   $.ajax({
@@ -91,8 +99,7 @@ function cityIndex(uv){
       "&deg;F<p>" +
       "<p> High: " +
       response.main.temp_max +
-      "<p>" +
-      "&deg;F<p> Low: " +
+      "<p>" +"&deg;F<p> Low: " +
       response.main.temp_min +
       "&deg;F<p>" +
       "<p>  <img src= http://openweathermap.org/img/wn/" +
