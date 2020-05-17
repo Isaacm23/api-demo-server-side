@@ -32,11 +32,11 @@ function getWeather() {
       "&appid=dff0a319051040d9ba1c7ea38abb997d&units=imperial",
     method: "GET",
   }).then(function (response) {
-    console.log(response)
+    
    
     var cityName = results(response);
     
-    console.log(response.coord.lat)
+   
 
     $("#name").html(cityName);
     
@@ -73,7 +73,7 @@ function cityIndex(uv){
       "&appid=dff0a319051040d9ba1c7ea38abb997d&units=imperial",
     method: "GET",
   }).then(function (data) {
-    console.log(data)
+    
    
     var one = dayOne(data);
     var two = dayTwo(data);
