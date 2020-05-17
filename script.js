@@ -9,18 +9,7 @@ $(document).ready(function () {
 function getWeather() {
   var val = $("#city").val();
   
-  localStorage.setItem("city",val);
-  
-  function history(){
-  var history = localStorage.getItem(val);
-    
-    return(
-    "<p> Recent Searches: " + history  +
-        "</p>" )
-    };
-    
-     var historyInput = history()
-     $("#history").html(historyInput)
+ 
      
       
   
@@ -50,17 +39,24 @@ function getWeather() {
       "&lat="+response.coord.lat+"&lon=" +response.coord.lon,
     method: "GET",
   }).then(function (uv) {
-    console.log(uv);
+    
     var cityIndex = cityIndex(uv)
 $(".index").html(cityIndex)
+
+if (uv.value > 6) {
+   $(".index").addClass("text-danger" );};
+
+  
 
 function cityIndex(uv){
   return(
   "<p> Index: " +
       uv.value +
-      "</p>"
-  )
-}
+      "</p>" )
+      
+  
+  
+};
 
   $.ajax({
     url:
@@ -106,9 +102,9 @@ function cityIndex(uv){
       "<p>" +
       response.weather[0].description +
       "</p>"+
-      "<p>" +
-      response.main[0].humidity +
-      "</p>"
+      "<p> Humidity: " +
+      response.main.humidity +
+      "%</p>"
       
     
     )};
@@ -130,7 +126,10 @@ function dayOne(data) {
     "</p>" +
     "<p>" +
     data.list[0].weather[0].description +
-    "</p>"
+    "</p>"+
+    "<p>Humidity" +
+    data.list[0].main.humidity +
+    "%</p>"
   );
 }
 function dayTwo(data) {
@@ -149,8 +148,11 @@ function dayTwo(data) {
     ".png>" +
     "</p>" +
     "<p>" +
-    data.list[0].weather[0].description +
-    "</p>"
+    data.list[7].weather[0].description +
+    "</p>"+
+    "<p>Humidity" +
+    data.list[7].main.humidity +
+    "%</p>"
   );
 }
 function dayThree(data) {
@@ -169,8 +171,11 @@ function dayThree(data) {
     ".png>" +
     "</p>" +
     "<p>" +
-    data.list[0].weather[0].description +
-    "</p>"
+    data.list[15].weather[0].description +
+    "</p>"+
+    "<p>Humidity" +
+    data.list[15].main.humidity +
+    "%</p>"
   );
 }
 function dayFour(data) {
@@ -189,8 +194,11 @@ function dayFour(data) {
     ".png>" +
     "</p>" +
     "<p>" +
-    data.list[0].weather[0].description +
-    "</p>"
+    data.list[23].weather[0].description +
+    "</p>"+
+    "<p>Humidity" +
+    data.list[23].main.humidity +
+    "%</p>"
   );
 }
 function dayFive(data) {
@@ -209,8 +217,11 @@ function dayFive(data) {
     ".png>" +
     "</p>" +
     "<p>" +
-    data.list[0].weather[0].description +
-    "</p>"
+    data.list[31].weather[0].description +
+    "</p>"+
+    "<p>Humidity" +
+    data.list[31].main.humidity +
+    "%</p>"
   );
 }};
 
